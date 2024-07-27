@@ -1,15 +1,25 @@
 import Container from '@mui/material/Container';
+import { Grid } from '@mui/material';
 
 import MovieCard from '../components/MovieCard/MovieCard'
 
-type Props = {}
-
-const Movies = (props: Props) => {
+export default function Movies() {
     return (
-        <Container maxWidth="lg">
-            <MovieCard />
+        <Container>
+            <Grid container spacing={2}>
+                <Grid item xs={8}>
+                    <MovieCard />
+                </Grid>
+                <Grid item xs={4}>
+                    <MovieCard />
+                </Grid>
+                <Grid item xs={4}>
+                    <MovieCard />
+                </Grid>
+                <Grid item xs={8}>
+                    <MovieCard />
+                </Grid>
+            </Grid>
         </Container>
-    )
+    );
 }
-
-export default Movies
