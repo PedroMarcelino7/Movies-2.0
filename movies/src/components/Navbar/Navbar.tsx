@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import SearchInput from './SearchInput';
 
 const pages = ['Top Movies', 'News', 'Reviews'];
 const settings = ['Profile', 'Logout'];
@@ -36,7 +36,10 @@ export default function Navbar() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar
+            position="static"
+            sx={{ marginBottom: 5 }}
+        >
             <Container>
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -75,25 +78,11 @@ export default function Navbar() {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        LOGO
-                    </Typography>
+
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <SearchInput />
+                    </Box>
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
@@ -106,7 +95,16 @@ export default function Navbar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box
+                        sx={{
+                            flexGrow: 0,
+                            display: 'flex'
+                        }}
+                    >
+                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                            <SearchInput />
+                        </Box>
+
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
