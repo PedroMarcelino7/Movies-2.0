@@ -1,13 +1,14 @@
-import React from 'react'
+import Container from '@mui/material/Container';
+
 import MovieCard from '../components/MovieCard/MovieCard'
 
 type Props = {}
 
 const Movies = (props: Props) => {
     return (
-        <div>
+        <Container maxWidth="lg">
             <MovieCard />
-        </div>
+        </Container>
     )
 }
 
