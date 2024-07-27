@@ -7,18 +7,12 @@ export default function Movies() {
     return (
         <Container>
             <Grid container spacing={2}>
-                <Grid item xs={8}>
-                    <MovieCard />
-                </Grid>
-                <Grid item xs={4}>
-                    <MovieCard />
-                </Grid>
-                <Grid item xs={4}>
-                    <MovieCard />
-                </Grid>
-                <Grid item xs={8}>
-                    <MovieCard />
-                </Grid>
+                <MovieCard />
+                <MovieCard />
+                <MovieCard />
+                <MovieCard />
+                <MovieCard />
+                <MovieCard />
             </Grid>
         </Container>
     );
