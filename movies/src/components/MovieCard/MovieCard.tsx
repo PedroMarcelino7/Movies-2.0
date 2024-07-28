@@ -13,6 +13,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import { Grid } from '@mui/material';
+import MovieRate from './MovieRate';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -54,14 +55,9 @@ export default function MovieCard() {
                     image="/static/images/cards/paella.jpg"
                     alt="Paella dish"
                 />
-                
+
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="share">
-                        <ShareIcon />
-                    </IconButton>
+                    <MovieRate />
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
