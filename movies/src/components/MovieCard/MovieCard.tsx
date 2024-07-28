@@ -29,7 +29,11 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-export default function MovieCard() {
+interface Props {
+    handleOpenEditReview: () => void
+}
+
+export default function MovieCard({ handleOpenEditReview }: Props) {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -43,7 +47,7 @@ export default function MovieCard() {
                     action={
                         <IconButton>
                             <TooltipTop name='Edit'>
-                                <EditIcon />
+                                <EditIcon onClick={handleOpenEditReview} />
                             </TooltipTop>
                         </IconButton>
                     }

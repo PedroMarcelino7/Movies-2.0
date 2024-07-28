@@ -15,20 +15,20 @@ const style = {
 };
 
 interface Props {
-    handleCloseCreateReview: () => void,
-    openCreateReview: boolean
+    handleCloseEditReview: () => void,
+    openEditReview: boolean
 }
 
-export default function CreateReview({ handleCloseCreateReview, openCreateReview }: Props) {
+export default function EditReview({ handleCloseEditReview, openEditReview }: Props) {
     return (
         <div>
             <Modal
-                open={openCreateReview}
-                onClose={handleCloseCreateReview}
+                open={openEditReview}
+                onClose={handleCloseEditReview}
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Create Review
+                        Edit Review
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
