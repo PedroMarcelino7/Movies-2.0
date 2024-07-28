@@ -15,16 +15,16 @@ const style = {
 };
 
 interface Props {
-    handleCloseModal: () => void,
-    openModal: boolean
+    handleCloseCreateReview: () => void,
+    openCreateReview: boolean
 }
 
-export default function CreateReview({ handleCloseModal, openModal }: Props) {
+export default function CreateReview({ handleCloseCreateReview, openCreateReview }: Props) {
     return (
         <div>
             <Modal
-                open={openModal}
-                onClose={handleCloseModal}
+                open={openCreateReview}
+                onClose={handleCloseCreateReview}
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">

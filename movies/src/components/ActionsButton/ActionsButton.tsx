@@ -3,12 +3,12 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
 interface Props {
-    handleOpenModal: () => void;
+    handleOpenCreateReview: () => void;
 }
 
-export default function ActionsButton({ handleOpenModal }: Props) {
+export default function ActionsButton({ handleOpenCreateReview }: Props) {
     return (
-        <Box onClick={handleOpenModal}
+        <Box onClick={handleOpenCreateReview}
             sx={{
                 '& > :not(style)': { m: 1 },
                 position: 'fixed',

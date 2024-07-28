@@ -15,22 +15,22 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  const [openModal, setOpenModal] = useState(false);
+  const [openCreateReview, setOpenCreateReview] = useState(false);
 
-  const handleOpenModal = () => setOpenModal(true)
-  const handleCloseModal = () => setOpenModal(false)
+  const handleOpenCreateReview = () => setOpenCreateReview(true)
+  const handleCloseCreateReview = () => setOpenCreateReview(false)
 
   return (
     <>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        
+
         <Navbar />
 
         <Reviews />
-        <CreateReview handleCloseModal={handleCloseModal} openModal={openModal} />
+        <CreateReview handleCloseCreateReview={handleCloseCreateReview} openCreateReview={openCreateReview} />
 
-        <ActionsButton handleOpenModal={handleOpenModal} />
+        <ActionsButton handleOpenCreateReview={handleOpenCreateReview} />
       </ThemeProvider>
     </>
   )
