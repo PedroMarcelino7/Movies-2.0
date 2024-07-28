@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar/Navbar"
-import Movies from "./pages/Movies"
+import Reviews from "./pages/Reviews"
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import ActionsButton from "./components/ActionsButton/ActionsButton";
@@ -17,7 +17,7 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Navbar />
-        <Movies />
+        <Reviews />
         <ActionsButton />
       </ThemeProvider>
     </>

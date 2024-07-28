@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 
 import MovieCard from '../components/MovieCard/MovieCard'
 
-export default function Movies() {
+export default function Reviews() {
     return (
         <Container>
             <Grid container spacing={2}>

@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SearchInput from './SearchInput';
 
-const pages = ['Top Movies', 'News', 'Reviews'];
+const pages = ['Reviews', 'News', 'Top Movies'];
 const settings = ['Profile', 'Logout'];
 
 export default function Navbar() {
