@@ -12,6 +12,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import { Grid } from '@mui/material';
 import MovieRate from './MovieRate';
+import TooltipTop from '../Tooltip/Tooltip';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -41,7 +42,9 @@ export default function MovieCard() {
                 <CardHeader
                     action={
                         <IconButton>
-                            <EditIcon />
+                            <TooltipTop name='Edit'>
+                                <EditIcon />
+                            </TooltipTop>
                         </IconButton>
                     }
                     title="Shrimp and Chorizo"

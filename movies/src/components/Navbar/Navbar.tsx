@@ -99,10 +99,15 @@ export default function Navbar() {
                     <Box
                         sx={{
                             flexGrow: 0,
-                            display: 'flex'
+                            display: 'flex',
+                            gap: 3
                         }}
                     >
-                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <Box
+                            sx={{
+                                display: { xs: 'none', md: 'flex' }
+                            }}
+                        >
                             <SearchInput />
                         </Box>
 
