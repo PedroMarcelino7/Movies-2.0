@@ -2,9 +2,13 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 
-export default function ActionsButton() {
+interface Props {
+    handleOpenModal: () => void;
+}
+
+export default function ActionsButton({ handleOpenModal }: Props) {
     return (
-        <Box
+        <Box onClick={handleOpenModal}
             sx={{
                 '& > :not(style)': { m: 1 },
                 position: 'fixed',

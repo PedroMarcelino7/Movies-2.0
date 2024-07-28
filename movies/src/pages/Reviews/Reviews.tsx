@@ -1,7 +1,7 @@
 import Container from '@mui/material/Container';
 import { Grid } from '@mui/material';
 
-import MovieCard from '../components/MovieCard/MovieCard'
+import MovieCard from '../../components/MovieCard/MovieCard'
 
 export default function Reviews() {
     return (

@@ -59,13 +59,16 @@ export default function MovieCard() {
 
                 <CardActions disableSpacing>
                     <MovieRate />
+
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
                         aria-expanded={expanded}
                         aria-label="show more"
                     >
-                        <ExpandMoreIcon />
+                        <TooltipTop name='Review'>
+                            <ExpandMoreIcon />
+                        </TooltipTop>
                     </ExpandMore>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
