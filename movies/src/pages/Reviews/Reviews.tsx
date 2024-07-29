@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import { Grid } from '@mui/material';
 
 import MovieCard from '../../components/MovieCard/MovieCard';
+import LoadingScreen from '../../components/Loading/LoadingScreen';
 
 interface Props {
     handleOpenEditReview: () => void;
@@ -52,8 +53,9 @@ export default function Reviews({ handleOpenEditReview }: Props) {
     return (
         <Container>
             <Grid container spacing={2}>
-                {!loading &&
-                    movies.map((movie, index) => (
+                {loading
+                    ? <LoadingScreen />
+                    : movies.map((movie, index) => (
                         <MovieCard key={index} movie={movie} handleOpenEditReview={handleOpenEditReview} />
                     ))
                 }
