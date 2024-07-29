@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import AutoComplete from '../../components/Inputs/AutoComplete';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -30,9 +31,8 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Create Review
                     </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </Typography>
+                    
+                    <AutoComplete />
                 </Box>
             </Modal>
         </div>
