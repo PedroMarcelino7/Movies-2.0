@@ -1,57 +1,62 @@
+import { useEffect, useState } from 'react';
+
 import Container from '@mui/material/Container';
 import { Grid } from '@mui/material';
+
 import MovieCard from '../../components/MovieCard/MovieCard';
 
 interface Props {
     handleOpenEditReview: () => void;
 }
 
-interface Review {
-    title: string;
-    date: string;
-    img: string;
-    rating: number;
-    review: string;
+interface Movie {
+    MOVIE_TITLE: string;
+    MOVIE_DATE: string;
+    MOVIE_IMG: string;
+    MOVIE_RATING: number;
+    MOVIE_REVIEW: string;
 }
 
-const reviews: Review[] = [
-    {
-        title: 'Title 1',
-        date: '2024-07-28',
-        img: '',
-        rating: 4,
-        review: ''
-    },
-    {
-        title: 'Title 2',
-        date: '2020-05-20',
-        img: '',
-        rating: 3.5,
-        review: ''
-    },
-    {
-        title: 'Title 3',
-        date: '2018-02-10',
-        img: '',
-        rating: 4.5,
-        review: ''
-    },
-    {
-        title: 'Title 4',
-        date: '2019-01-15',
-        img: '',
-        rating: 5,
-        review: ''
-    },
-];
-
 export default function Reviews({ handleOpenEditReview }: Props) {
+
+    const [movies, setMovies] = useState<Movie[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
+
+    useEffect(() => {
+        getMovies()
+    }, [])
+
+    const getMovies = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/movies', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            console.log(result)
+
+            setLoading(false)
+            setMovies(result)
+        } catch (err: any) {
+            console.log('Error:', err);
+        }
+    }
+
     return (
         <Container>
             <Grid container spacing={2}>
-                {reviews.map((review, index) => (
-                    <MovieCard key={index} review={review} handleOpenEditReview={handleOpenEditReview} />
-                ))}
+                {!loading &&
+                    movies.map((movie, index) => (
+                        <MovieCard key={index} movie={movie} handleOpenEditReview={handleOpenEditReview} />
+                    ))
+                }
             </Grid>
         </Container>
     );

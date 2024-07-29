@@ -29,20 +29,20 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-interface Review {
-    title: string;
-    date: string;
-    img: string;
-    rating: number;
-    review: string;
+interface Movie {
+    MOVIE_TITLE: string;
+    MOVIE_DATE: string;
+    MOVIE_IMG: string;
+    MOVIE_RATING: number;
+    MOVIE_REVIEW: string;
 }
 
 interface Props {
     handleOpenEditReview: () => void;
-    review: Review;
+    movie: Movie;
 }
 
-export default function MovieCard({ handleOpenEditReview, review }: Props) {
+export default function MovieCard({ handleOpenEditReview, movie }: Props) {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -60,17 +60,17 @@ export default function MovieCard({ handleOpenEditReview, review }: Props) {
                             </TooltipTop>
                         </IconButton>
                     }
-                    title={review.title}
-                    subheader={review.date}
+                    title={movie.MOVIE_TITLE}
+                    subheader={movie.MOVIE_DATE}
                 />
                 <CardMedia
                     component="img"
                     height="194"
-                    image={review.img}
-                    alt={review.title}
+                    image={movie.MOVIE_IMG}
+                    alt={movie.MOVIE_TITLE}
                 />
                 <CardActions disableSpacing>
-                    <MovieRate rating={review.rating} />
+                    <MovieRate rating={movie.MOVIE_RATING} />
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
@@ -84,7 +84,7 @@ export default function MovieCard({ handleOpenEditReview, review }: Props) {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography paragraph>{review.review}</Typography>
+                        <Typography paragraph>{movie.MOVIE_REVIEW}</Typography>
                     </CardContent>
                 </Collapse>
             </Card>
