@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import AutoComplete from '../../components/Inputs/AutoComplete';
+import SubmitButton from '../../components/Buttons/SubmitButton';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -31,8 +32,10 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Create Review
                     </Typography>
-                    
+
                     <AutoComplete />
+
+                    <SubmitButton text={'Submit Review'} />
                 </Box>
             </Modal>
         </div>
