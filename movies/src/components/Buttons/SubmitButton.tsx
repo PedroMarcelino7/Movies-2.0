@@ -7,7 +7,7 @@ interface Props {
 
 export default function SubmitButton({ text }: Props) {
     return (
-        <Button variant="contained" size="small">
+        <Button type="submit" variant="contained" size="small">
             <Typography>
                 {text}
             </Typography>

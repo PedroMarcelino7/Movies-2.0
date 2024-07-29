@@ -21,7 +21,35 @@ interface Props {
     openCreateReview: boolean
 }
 
+interface Data {
+    movieTitle: string;
+}
+
 export default function CreateReview({ handleCloseCreateReview, openCreateReview }: Props) {
+    const handleSubmit = async (data: Data) => {
+        try {
+            const response = await fetch('http://localhost:3001/movies/reviews', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    movieTitle: data.movieTitle,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`)
+            }
+
+            const result = await response.json()
+
+            console.log('Success:', result)
+        } catch (err: any) {
+            console.log("Error:", err)
+        }
+    }
+
     return (
         <div>
             <Modal
@@ -29,13 +57,25 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                 onClose={handleCloseCreateReview}
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Create Review
-                    </Typography>
+                    <form onSubmit={(event) => {
+                        event.preventDefault();
 
-                    <AutoComplete />
+                        const formElements = event.currentTarget.elements as any;
 
-                    <SubmitButton text={'Submit Review'} />
+                        const data: Data = {
+                            movieTitle: formElements.movieTitle.value
+                        };
+
+                        handleSubmit(data);
+                    }}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Create Review
+                        </Typography>
+
+                        <AutoComplete name='movieTitle' />
+
+                        <SubmitButton text='Submit Review' />
+                    </form>
                 </Box>
             </Modal>
         </div>
