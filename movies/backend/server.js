@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { query } from 'express';
 import cors from 'cors';
 import { connection } from './db.js';
 
@@ -14,19 +14,26 @@ app.use(cors({
 app.use(express.json());
 
 app.get('/users', (req, res) => {
-    connection.query('SELECT * FROM USERS', (err, results) => {
+    const query = `
+    SELECT * FROM USERS
+    `
+
+    connection.query(query, (err, results) => {
         if (err) {
             return res.status(500).send(err);
         }
+        
         res.json(results);
     });
 });
 
 app.post('/users', (req, res) => {
     const { userEmail, userPassword } = req.body;
+
     const query = `
     INSERT INTO USERS (USER_EMAIL, USER_PASSWORD)
     VALUES (?, ?)`;
+    
     const values = [userEmail, userPassword];
 
     connection.query(query, values, (err, results) => {
@@ -37,6 +44,21 @@ app.post('/users', (req, res) => {
         res.status(201).json(results);
     });
 });
+
+app.get('/movies', (req, res) => {
+    const query = `
+    SELECT * FROM MOVIES
+    `
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        res.json(results);
+    });
+});
+
 
 const PORT = process.env.PORT || 3001;
 
