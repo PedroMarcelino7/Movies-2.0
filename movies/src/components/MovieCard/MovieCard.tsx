@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -12,7 +13,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import { Grid } from '@mui/material';
 import MovieRate from './MovieRate';
-import TooltipTop from '../Tooltip/Tooltip';
+
+import Tip from '../Tooltip/Tip';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -55,12 +57,26 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
                 <CardHeader
                     action={
                         <IconButton>
-                            <TooltipTop name='Edit'>
+                            <Tip name='Edit'>
                                 <EditIcon onClick={handleOpenEditReview} />
-                            </TooltipTop>
+                            </Tip>
                         </IconButton>
                     }
-                    title={movie.MOVIE_TITLE}
+                    title={
+                        <Tip name={movie.MOVIE_TITLE}>
+                            <Typography
+                                noWrap
+                                sx={{
+                                    whiteSpace: 'nowrap',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    maxWidth: '250px'
+                                }}
+                            >
+                                {movie.MOVIE_TITLE}
+                            </Typography>
+                        </Tip>
+                    }
                     subheader={movie.MOVIE_DATE}
                 />
                 <CardMedia
@@ -77,9 +93,9 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
                         aria-expanded={expanded}
                         aria-label="show more"
                     >
-                        <TooltipTop name='Review'>
+                        <Tip name='Review'>
                             <ExpandMoreIcon />
-                        </TooltipTop>
+                        </Tip>
                     </ExpandMore>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>

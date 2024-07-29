@@ -6,7 +6,7 @@ interface Props {
     name: String
 }
 
-export default function TooltipTop({ children, name }: Props) {
+export default function Tip({ children, name }: Props) {
     return (
         <Tooltip title={name} placement="top">
             {children}
