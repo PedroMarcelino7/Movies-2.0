@@ -8,7 +8,7 @@ interface Props {
 
 export default function MovieRate({ rating }: Props) {
     return (
-        <Tip name={`Rating - ${rating}`}>
+        <Tip name={`Rating - ${rating}`} placement='right'>
             <Box>
                 <Rating name="half-rating-read" value={rating} precision={0.5} readOnly />
             </Box>

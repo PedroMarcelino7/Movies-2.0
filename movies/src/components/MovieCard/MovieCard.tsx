@@ -57,13 +57,13 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
                 <CardHeader
                     action={
                         <IconButton>
-                            <Tip name='Edit'>
+                            <Tip name='Edit' placement='bottom'>
                                 <EditIcon onClick={handleOpenEditReview} />
                             </Tip>
                         </IconButton>
                     }
                     title={
-                        <Tip name={movie.MOVIE_TITLE}>
+                        <Tip name={movie.MOVIE_TITLE} placement='bottom-start'>
                             <Typography
                                 noWrap
                                 sx={{
@@ -93,7 +93,7 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
                         aria-expanded={expanded}
                         aria-label="show more"
                     >
-                        <Tip name='Review'>
+                        <Tip name='Review' placement='left'>
                             <ExpandMoreIcon />
                         </Tip>
                     </ExpandMore>

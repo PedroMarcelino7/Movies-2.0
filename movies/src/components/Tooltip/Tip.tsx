@@ -3,12 +3,13 @@ import { ReactElement } from 'react';
 
 interface Props {
     children: ReactElement,
-    name: String
+    name: string,
+    placement: string
 }
 
-export default function Tip({ children, name }: Props) {
+export default function Tip({ children, name, placement }: Props) {
     return (
-        <Tooltip title={name} placement="top">
+        <Tooltip title={name} placement={placement}>
             {children}
         </Tooltip>
     );
