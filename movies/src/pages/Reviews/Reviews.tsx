@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Container from '@mui/material/Container';
-import { Grid } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 
 import MovieCard from '../../components/MovieCard/MovieCard';
 import LoadingScreen from '../../components/Loading/LoadingScreen';
@@ -19,13 +19,12 @@ interface Movie {
 }
 
 export default function Reviews({ handleOpenEditReview }: Props) {
-
-    const [movies, setMovies] = useState<Movie[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        getMovies()
-    }, [])
+        getMovies();
+    }, []);
 
     const getMovies = async () => {
         try {
@@ -41,25 +40,35 @@ export default function Reviews({ handleOpenEditReview }: Props) {
             }
 
             const result = await response.json();
-            console.log(result)
 
-            setLoading(false)
-            setMovies(result)
+            setLoading(false);
+            setMovies(result);
         } catch (err: any) {
             console.log('Error:', err);
         }
-    }
+    };
 
     return (
-        <Container>
-            <Grid container spacing={2}>
-                {loading
-                    ? <LoadingScreen />
-                    : movies.map((movie, index) => (
-                        <MovieCard key={index} movie={movie} handleOpenEditReview={handleOpenEditReview} />
-                    ))
-                }
-            </Grid>
-        </Container>
+        <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="100vh"
+        >
+            <Container>
+                <Grid 
+                    container 
+                    spacing={2} 
+                    alignItems="center"
+                >
+                    {loading
+                        ? <LoadingScreen />
+                        : movies.map((movie, index) => (
+                            <MovieCard key={index} movie={movie} handleOpenEditReview={handleOpenEditReview} />
+                        ))
+                    }
+                </Grid>
+            </Container>
+        </Box>
     );
 }

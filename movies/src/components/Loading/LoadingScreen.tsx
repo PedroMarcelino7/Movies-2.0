@@ -4,10 +4,11 @@ import Box from '@mui/material/Box';
 export default function LoadingScreen() {
     return (
         <Box sx={{
-            width: '100vw',
-            height: '100vh',
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            position: 'absolute',
+            position: 'fixed',
             top: '0',
             left: '0',
             display: 'flex',

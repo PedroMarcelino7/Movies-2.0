@@ -37,7 +37,6 @@ export default function Navbar() {
     return (
         <AppBar
             position="static"
-            sx={{ marginBottom: 5 }}
         >
             <Container>
                 <Toolbar disableGutters>

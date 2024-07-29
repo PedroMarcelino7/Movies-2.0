@@ -52,8 +52,8 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
     };
 
     return (
-        <Grid item xs={12} md={6} lg={4}>
-            <Card sx={{ maxWidth: 345 }}>
+        <Grid item xs={12} sm={6} md={4} display="flex" justifyContent="center">
+            <Card sx={{ width: '100%', maxWidth: 345 }}>
                 <CardHeader
                     action={
                         <IconButton>
