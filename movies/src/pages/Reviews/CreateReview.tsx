@@ -31,6 +31,7 @@ interface Data {
 }
 
 interface Movies {
+    id: number,
     label: string;
     releaseDate: string;
     img: string;
@@ -63,8 +64,6 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
         }
     }
 
-    // -------------------------------------------------------------------------
-
     const searchURL = 'https://api.themoviedb.org/3/search/movie'
     const apiKey = import.meta.env.VITE_API_KEY
 
@@ -76,6 +75,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
         const data = await res.json()
 
         const options = data.results.map((movie: any) => ({
+            id: movie.id,
             label: movie.original_title,
             releaseDate: movie.release_date,
             img: movie.backdrop_path,
@@ -93,7 +93,6 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
 
     const handleSearch = (value: string) => {
         setQuery(value)
-
         console.log('query:', query)
     }
 
