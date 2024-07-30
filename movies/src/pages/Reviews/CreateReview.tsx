@@ -26,7 +26,7 @@ interface Props {
 interface Data {
     movieTitle: string,
     movieReview: string,
-    movieRating: string,
+    movieRating: number,
 }
 
 export default function CreateReview({ handleCloseCreateReview, openCreateReview }: Props) {
@@ -45,14 +45,14 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
             });
 
             if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`)
+                throw new Error(`Error: ${response.statusText}`);
             }
 
-            const result = await response.json()
+            const result = await response.json();
 
-            console.log('Success:', result)
+            console.log('Success:', result);
         } catch (err: any) {
-            console.log("Error:", err)
+            console.log("Error:", err);
         }
     }
 
@@ -71,7 +71,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                         const data: Data = {
                             movieTitle: formElements.movieTitle.value,
                             movieReview: formElements.movieReview.value,
-                            movieRating: formElements.movieRating.value,
+                            movieRating: parseFloat(formElements.movieRating.value),
                         };
 
                         handleSubmit(data);

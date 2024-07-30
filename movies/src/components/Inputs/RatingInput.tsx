@@ -7,8 +7,8 @@ interface Props {
     size?: 'small' | 'medium' | 'large',
 }
 
-export default function RatingInput({ name, defaultValue, precision, size  }: Props) {
+export default function RatingInput({ name, defaultValue, precision, size }: Props) {
     return (
-        <Rating name={name} defaultValue={defaultValue} precision={precision} size={size}  />
+        <Rating name={name} defaultValue={defaultValue} precision={precision} size={size} />
     );
 }

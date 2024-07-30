@@ -16,6 +16,7 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  // MODAL CONTROLLER ---------------------------------------------
   const [openCreateReview, setOpenCreateReview] = useState(false);
   const [openEditReview, setOpenEditReview] = useState(false);
 
@@ -25,6 +26,7 @@ function App() {
   const handleOpenEditReview = () => setOpenEditReview(true)
   const handleCloseEditReview = () => setOpenEditReview(false)
 
+  // API ----------------------------------------------------------
   const moviesURL = 'https://api.themoviedb.org/3/movie/'
   const apiKey = import.meta.env.VITE_API_KEY
 
