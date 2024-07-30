@@ -4,6 +4,7 @@ import Modal from '@mui/material/Modal';
 import AutoComplete from '../../components/Inputs/AutoComplete';
 import SubmitButton from '../../components/Buttons/SubmitButton';
 import RatingInput from '../../components/Inputs/RatingInput';
+import TextArea from '../../components/Inputs/TextArea';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -85,6 +86,8 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                                 gap: 1
                             }}>
                                 <AutoComplete name='movieTitle' />
+
+                                <TextArea name='review' rows={5} />
 
                                 <RatingInput name='rating' defaultValue={0} precision={0.5} size='large' />
                             </Box>
