@@ -58,9 +58,9 @@ export default function Reviews({ handleOpenEditReview }: Props) {
             marginBottom={10}
         >
             <Container>
-                <Grid 
-                    container 
-                    spacing={2} 
+                <Grid
+                    container
+                    spacing={2}
                     alignItems="center"
                 >
                     {loading

@@ -5,6 +5,7 @@ import AutoComplete from '../../components/Inputs/AutoComplete';
 import SubmitButton from '../../components/Buttons/SubmitButton';
 import RatingInput from '../../components/Inputs/RatingInput';
 import TextArea from '../../components/Inputs/TextArea';
+import { useEffect } from 'react';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -56,6 +57,31 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
         }
     }
 
+    // -------------------------------------------------------------------------
+
+    const searchURL = 'https://api.themoviedb.org/3/search/movie'
+    const apiKey = import.meta.env.VITE_API_KEY
+
+    // const [searchParams] = useSearchParams()
+    // const [movies, setMovies] = useState([])
+    // const query = searchParams.get("q")
+
+    // const getSearchedMovies = async (url: string) => {
+    //     const res = await fetch(url)
+    //     const data = await res.json()
+
+    //     setMovies(data.results)
+    // }
+
+    // useEffect(() => {
+    //     const searchWithQueryURL = `${searchURL}?${apiKey}&query=${query}`
+
+    //     getSearchedMovies(searchWithQueryURL)
+    // }, [query])
+    useEffect(() => {
+        console.log('ativou o use effect')
+    }, [])
+
     return (
         <div>
             <Modal
@@ -91,7 +117,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                                 flexDirection: 'column',
                                 gap: 2
                             }}>
-                                <AutoComplete name='movieTitle' required={true} />
+                                <AutoComplete name='movieTitle' required={true} movies={[{ label: 'teste', releaseDate: '2024-07-30', img: '' }, { label: 'teste2', releaseDate: '2024-07-30', img: '' }]} />
 
                                 <TextArea name='movieReview' placeholder='Your Review...' required={false} />
 
