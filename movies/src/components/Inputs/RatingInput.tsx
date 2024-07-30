@@ -1,7 +1,14 @@
 import Rating from '@mui/material/Rating';
 
-export default function RatingInput() {
+interface Props {
+    name: string,
+    defaultValue: number,
+    precision: number,
+    size?: 'small' | 'medium' | 'large';
+}
+
+export default function RatingInput({ name, defaultValue, precision, size }: Props) {
     return (
-        <Rating name="rating" defaultValue={0} precision={0.5} />
+        <Rating name={name} defaultValue={defaultValue} precision={precision} size={size} />
     );
 }

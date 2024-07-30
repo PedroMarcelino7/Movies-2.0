@@ -82,13 +82,11 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                             <Box sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center',
                                 gap: 1
                             }}>
                                 <AutoComplete name='movieTitle' />
 
-                                <RatingInput />
+                                <RatingInput name='rating' defaultValue={0} precision={0.5} size='large' />
                             </Box>
 
                             <SubmitButton text='Submit Review' />
