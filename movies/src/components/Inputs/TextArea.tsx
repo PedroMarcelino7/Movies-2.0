@@ -1,6 +1,6 @@
 interface Props {
     name: string,
-    rows: number
+    placeholder: string
 }
 
 const textarea = {
@@ -8,13 +8,16 @@ const textarea = {
     backgroundColor: '#121212',
     width: '100%',
     maxWidth: '100%',
+    minWidth: '100%',
+    maxHeight: '400px',
+    minHeight: '150px',
     padding: '1rem',
     fontSize: '1.2rem',
     borderRadius: '5px'
 }
 
-export default function TextArea({ name, rows }: Props) {
+export default function TextArea({ name, placeholder }: Props) {
     return (
-        <textarea placeholder="Review" style={textarea} rows={rows} name={name} />
+        <textarea placeholder={placeholder} style={textarea} name={name} />
     )
 }

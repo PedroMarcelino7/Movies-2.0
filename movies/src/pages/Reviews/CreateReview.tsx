@@ -87,7 +87,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                             }}>
                                 <AutoComplete name='movieTitle' />
 
-                                <TextArea name='review' rows={5} />
+                                <TextArea name='review' placeholder='Your Review...' />
 
                                 <RatingInput name='rating' defaultValue={0} precision={0.5} size='large' />
                             </Box>
