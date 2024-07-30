@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import AutoComplete from '../../components/Inputs/AutoComplete';
 import SubmitButton from '../../components/Buttons/SubmitButton';
+import RatingInput from '../../components/Inputs/RatingInput';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -68,13 +69,30 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
 
                         handleSubmit(data);
                     }}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Create Review
-                        </Typography>
+                        <Box sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            gap: 3
+                        }}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                Create Review
+                            </Typography>
 
-                        <AutoComplete name='movieTitle' />
+                            <Box sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                gap: 1
+                            }}>
+                                <AutoComplete name='movieTitle' />
 
-                        <SubmitButton text='Submit Review' />
+                                <RatingInput />
+                            </Box>
+
+                            <SubmitButton text='Submit Review' />
+                        </Box>
                     </form>
                 </Box>
             </Modal>
