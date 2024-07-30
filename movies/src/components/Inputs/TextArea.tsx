@@ -1,6 +1,7 @@
 interface Props {
     name: string,
-    placeholder: string
+    placeholder: string,
+    required: boolean
 }
 
 const textarea = {
@@ -16,8 +17,8 @@ const textarea = {
     borderRadius: '5px'
 }
 
-export default function TextArea({ name, placeholder }: Props) {
+export default function TextArea({ name, placeholder, required }: Props) {
     return (
-        <textarea placeholder={placeholder} style={textarea} name={name} />
+        <textarea placeholder={placeholder} style={textarea} name={name} required={required} />
     )
 }

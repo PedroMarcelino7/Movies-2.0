@@ -24,7 +24,9 @@ interface Props {
 }
 
 interface Data {
-    movieTitle: string;
+    movieTitle: string,
+    movieReview: string,
+    movieRating: string,
 }
 
 export default function CreateReview({ handleCloseCreateReview, openCreateReview }: Props) {
@@ -37,6 +39,8 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                 },
                 body: JSON.stringify({
                     movieTitle: data.movieTitle,
+                    movieReview: data.movieReview,
+                    movieRating: data.movieRating,
                 }),
             });
 
@@ -65,7 +69,9 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                         const formElements = event.currentTarget.elements as any;
 
                         const data: Data = {
-                            movieTitle: formElements.movieTitle.value
+                            movieTitle: formElements.movieTitle.value,
+                            movieReview: formElements.movieReview.value,
+                            movieRating: formElements.movieRating.value,
                         };
 
                         handleSubmit(data);
@@ -74,7 +80,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
-                            gap: 3
+                            gap: 4
                         }}>
                             <Typography id="modal-modal-title" variant="h6" component="h2">
                                 Create Review
@@ -83,13 +89,13 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                             <Box sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: 1
+                                gap: 2
                             }}>
-                                <AutoComplete name='movieTitle' />
+                                <AutoComplete name='movieTitle' required={true} />
 
-                                <TextArea name='review' placeholder='Your Review...' />
+                                <TextArea name='movieReview' placeholder='Your Review...' required={false} />
 
-                                <RatingInput name='rating' defaultValue={0} precision={0.5} size='large' />
+                                <RatingInput name='movieRating' defaultValue={0} precision={0.5} size='large' />
                             </Box>
 
                             <SubmitButton text='Submit Review' />

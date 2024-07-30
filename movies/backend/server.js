@@ -68,15 +68,15 @@ app.get('/movies', (req, res) => {
 });
 
 app.post('/movies/reviews', (req, res) => {
-    const { movieTitle } = req.body;
+    const { movieTitle, movieReview, movieRating } = req.body;
 
     const query = `
         INSERT INTO 
         MOVIES (MOVIE_TITLE, MOVIE_DATE, MOVIE_IMG, MOVIE_RATING, MOVIE_REVIEW)
-        VALUES (?, '2024-07-29', 'aaaaaaaaa', 5, 'Review')
+        VALUES (?, '2024-07-29', 'aaaaaaaaa', ?, ?)
     `;
 
-    const values = [movieTitle];
+    const values = [movieTitle, movieRating, movieReview];
 
     connection.query(query, values, (err, results) => {
         if (err) {

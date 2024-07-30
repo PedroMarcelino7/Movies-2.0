@@ -54,6 +54,8 @@ export default function Reviews({ handleOpenEditReview }: Props) {
             justifyContent="center"
             alignItems="center"
             minHeight="100vh"
+            marginTop={5}
+            marginBottom={10}
         >
             <Container>
                 <Grid 

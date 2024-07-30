@@ -2,16 +2,17 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 interface Props {
-    name: string
+    name: string,
+    required: boolean
 }
 
-export default function AutoComplete({ name }: Props) {
+export default function AutoComplete({ name, required }: Props) {
     return (
         <Autocomplete
             disablePortal
             options={movies}
             sx={{ width: '100%' }}
-            renderInput={(params) => <TextField {...params} label="Movie" name={name} />}
+            renderInput={(params) => <TextField {...params} label="Movie" name={name} required={required} />}
         />
     );
 }
