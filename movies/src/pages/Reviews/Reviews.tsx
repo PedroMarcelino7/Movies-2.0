@@ -5,9 +5,15 @@ import { Grid, Box } from '@mui/material';
 
 import MovieCard from '../../components/MovieCard/MovieCard';
 import LoadingScreen from '../../components/Loading/LoadingScreen';
+import CreateReview from './CreateReview';
+import EditReview from './EditReview';
 
 interface Props {
-    handleOpenEditReview: () => void;
+    handleOpenEditReview: () => void,
+    handleCloseCreateReview: () => void,
+    openCreateReview: boolean,
+    handleCloseEditReview: () => void,
+    openEditReview: boolean
 }
 
 interface Movie {
@@ -18,7 +24,15 @@ interface Movie {
     MOVIE_REVIEW: string;
 }
 
-export default function Reviews({ handleOpenEditReview }: Props) {
+export default function
+    Reviews({
+        handleOpenEditReview,
+        handleCloseCreateReview,
+        openCreateReview,
+        handleCloseEditReview,
+        openEditReview
+    }: Props) {
+
     const [movies, setMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -71,6 +85,9 @@ export default function Reviews({ handleOpenEditReview }: Props) {
                     }
                 </Grid>
             </Container>
+
+            <CreateReview handleCloseCreateReview={handleCloseCreateReview} openCreateReview={openCreateReview} />
+            <EditReview handleCloseEditReview={handleCloseEditReview} openEditReview={openEditReview} />
         </Box>
     );
 }

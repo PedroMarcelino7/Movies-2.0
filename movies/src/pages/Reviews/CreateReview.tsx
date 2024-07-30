@@ -5,7 +5,7 @@ import AutoComplete from '../../components/Inputs/AutoComplete';
 import SubmitButton from '../../components/Buttons/SubmitButton';
 import RatingInput from '../../components/Inputs/RatingInput';
 import TextArea from '../../components/Inputs/TextArea';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -28,6 +28,12 @@ interface Data {
     movieTitle: string,
     movieReview: string,
     movieRating: number,
+}
+
+interface Movies {
+    label: string;
+    releaseDate: string;
+    img: string;
 }
 
 export default function CreateReview({ handleCloseCreateReview, openCreateReview }: Props) {
@@ -62,25 +68,34 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
     const searchURL = 'https://api.themoviedb.org/3/search/movie'
     const apiKey = import.meta.env.VITE_API_KEY
 
-    // const [searchParams] = useSearchParams()
-    // const [movies, setMovies] = useState([])
-    // const query = searchParams.get("q")
+    const [query, setQuery] = useState('')
+    const [searchOptions, setSearchOptions] = useState<Movies[]>([])
 
-    // const getSearchedMovies = async (url: string) => {
-    //     const res = await fetch(url)
-    //     const data = await res.json()
+    const getSearchMovies = async (url: string) => {
+        const res = await fetch(url)
+        const data = await res.json()
 
-    //     setMovies(data.results)
-    // }
+        const options = data.results.map((movie: any) => ({
+            label: movie.original_title,
+            releaseDate: movie.release_date,
+            img: movie.backdrop_path,
+        }));
 
-    // useEffect(() => {
-    //     const searchWithQueryURL = `${searchURL}?${apiKey}&query=${query}`
+        setSearchOptions(options)
+        console.log('search options:', searchOptions)
+    }
 
-    //     getSearchedMovies(searchWithQueryURL)
-    // }, [query])
     useEffect(() => {
-        console.log('ativou o use effect')
-    }, [])
+        const searchWithQueryURL = `${searchURL}?${apiKey}&query=${query}`
+
+        getSearchMovies(searchWithQueryURL)
+    }, [query])
+
+    const handleSearch = (value: string) => {
+        setQuery(value)
+
+        console.log('query:', query)
+    }
 
     return (
         <div>
@@ -117,11 +132,25 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                                 flexDirection: 'column',
                                 gap: 2
                             }}>
-                                <AutoComplete name='movieTitle' required={true} movies={[{ label: 'teste', releaseDate: '2024-07-30', img: '' }, { label: 'teste2', releaseDate: '2024-07-30', img: '' }]} />
+                                <AutoComplete
+                                    onChange={handleSearch}
+                                    name='movieTitle'
+                                    required={true}
+                                    movies={searchOptions}
+                                />
 
-                                <TextArea name='movieReview' placeholder='Your Review...' required={false} />
+                                <TextArea
+                                    name='movieReview'
+                                    placeholder='Your Review...'
+                                    required={false}
+                                />
 
-                                <RatingInput name='movieRating' defaultValue={0} precision={0.5} size='large' />
+                                <RatingInput
+                                    name='movieRating'
+                                    defaultValue={0}
+                                    precision={0.5}
+                                    size='large'
+                                />
                             </Box>
 
                             <SubmitButton text='Submit Review' />

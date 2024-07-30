@@ -4,10 +4,10 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import ActionsButton from "./components/ActionsButton/ActionsButton";
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Navbar from "./components/Navbar/Navbar"
 import Reviews from "./pages/Reviews/Reviews"
-import CreateReview from "./pages/Reviews/CreateReview";
-import EditReview from "./pages/Reviews/EditReview";
 
 const darkTheme = createTheme({
   palette: {
@@ -48,13 +48,23 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
 
-        <Navbar />
+        <BrowserRouter>
+          <Navbar />
 
-        <Reviews handleOpenEditReview={handleOpenEditReview} />
-        <CreateReview handleCloseCreateReview={handleCloseCreateReview} openCreateReview={openCreateReview} />
-        <EditReview handleCloseEditReview={handleCloseEditReview} openEditReview={openEditReview} />
+          <Routes>
+            <Route path='/reviews' element={
+              <Reviews
+                handleOpenEditReview={handleOpenEditReview}
+                handleCloseCreateReview={handleCloseCreateReview}
+                openCreateReview={openCreateReview}
+                handleCloseEditReview={handleCloseEditReview}
+                openEditReview={openEditReview}
+              />
+            } />
+          </Routes>
 
-        <ActionsButton handleOpenCreateReview={handleOpenCreateReview} />
+          <ActionsButton handleOpenCreateReview={handleOpenCreateReview} />
+        </BrowserRouter>
       </ThemeProvider>
     </>
   )

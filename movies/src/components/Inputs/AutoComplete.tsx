@@ -10,16 +10,26 @@ interface Movies {
 interface Props {
     name: string,
     required: boolean,
-    movies: Movies[]
+    movies: Movies[],
+    onChange: (value: string) => void
 }
 
-export default function AutoComplete({ name, required, movies }: Props) {
+export default function AutoComplete({ name, required, movies, onChange }: Props) {
     return (
         <Autocomplete
             disablePortal
             options={movies}
             sx={{ width: '100%' }}
-            renderInput={(params) => <TextField {...params} label="Movie" name={name} required={required} />}
+            renderInput={
+                (params) =>
+                    <TextField
+                        {...params}
+                        label="Movie"
+                        name={name}
+                        required={required}
+                        onChange={(e) => onChange(e.target.value)}
+                    />
+            }
         />
     );
 }
