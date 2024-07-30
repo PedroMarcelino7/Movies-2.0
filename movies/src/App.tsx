@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -24,6 +24,22 @@ function App() {
 
   const handleOpenEditReview = () => setOpenEditReview(true)
   const handleCloseEditReview = () => setOpenEditReview(false)
+
+  const moviesURL = 'https://api.themoviedb.org/3/movie/'
+  const apiKey = import.meta.env.VITE_API_KEY
+
+  const getTopRatedMovies = async (url: string) => {
+    const res = await fetch(url)
+    const data = await res.json()
+
+    console.log('filmes:', data)
+  }
+
+  useEffect(() => {
+    const topRatedURL = `${moviesURL}top_rated?${apiKey}`
+
+    getTopRatedMovies(topRatedURL)
+  }, [])
 
   return (
     <>
