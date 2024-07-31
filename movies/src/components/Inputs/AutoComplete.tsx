@@ -1,5 +1,6 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { useEffect } from 'react';
 
 interface MovieOption {
     id: number;
@@ -12,10 +13,15 @@ interface Props {
     name: string;
     required: boolean;
     movies: MovieOption[];
-    onChange: (value: string) => void;
+    handleSearch: (value: string) => void;
+    handleSelectedMovie: (e: any, value: MovieOption | null) => void
 }
 
-export default function AutoComplete({ name, required, movies, onChange }: Props) {
+export default function AutoComplete({ name, required, movies, handleSearch, handleSelectedMovie }: Props) {
+    useEffect(() => {
+        console.log('movies recebidos:', movies)
+    }, [movies])
+
     return (
         <Autocomplete
             disablePortal
@@ -27,13 +33,14 @@ export default function AutoComplete({ name, required, movies, onChange }: Props
                 </li>
             )}
             sx={{ width: '100%' }}
+            onChange={(e, value) => handleSelectedMovie(e, value)}
             renderInput={(params) => (
                 <TextField
                     {...params}
                     label="Movie"
                     name={name}
                     required={required}
-                    onChange={(e) => onChange(e.target.value)}
+                    onChange={(e) => handleSearch(e.target.value)}
                 />
             )}
         />

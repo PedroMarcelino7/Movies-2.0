@@ -25,7 +25,11 @@ interface Props {
 }
 
 interface Data {
-    movieTitle: string,
+    movieTitle: {
+        label: string,
+        releaseDate: string,
+        img: string
+    },
     movieReview: string,
     movieRating: number,
 }
@@ -39,6 +43,8 @@ interface Movies {
 
 export default function CreateReview({ handleCloseCreateReview, openCreateReview }: Props) {
     const handleSubmit = async (data: Data) => {
+        console.log('data', data)
+
         try {
             const response = await fetch('http://localhost:3001/movies/reviews', {
                 method: 'POST',
@@ -64,11 +70,13 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
         }
     }
 
+    // API ----------------------------------------------------------------
     const searchURL = 'https://api.themoviedb.org/3/search/movie'
     const apiKey = import.meta.env.VITE_API_KEY
 
     const [query, setQuery] = useState('')
     const [searchOptions, setSearchOptions] = useState<Movies[]>([])
+    const [selectedMovie, setSelectedMovie] = useState()
 
     const getSearchMovies = async (url: string) => {
         const res = await fetch(url)
@@ -92,8 +100,15 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
     }, [query])
 
     const handleSearch = (value: string) => {
+        console.log('valor recebido do on change:', value)
         setQuery(value)
         console.log('query:', query)
+    }
+
+    const handleSelectedMovie = (e: any, value: any) => {
+        console.log('event:', e)
+        setSelectedMovie(value)
+        alert(selectedMovie)
     }
 
     return (
@@ -132,10 +147,11 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                                 gap: 2
                             }}>
                                 <AutoComplete
-                                    onChange={handleSearch}
+                                    handleSearch={handleSearch}
                                     name='movieTitle'
                                     required={true}
                                     movies={searchOptions}
+                                    handleSelectedMovie={handleSelectedMovie}
                                 />
 
                                 <TextArea
