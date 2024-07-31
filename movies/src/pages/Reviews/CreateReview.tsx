@@ -25,13 +25,11 @@ interface Props {
 }
 
 interface Data {
-    movieTitle: {
-        label: string,
-        releaseDate: string,
-        img: string
-    },
+    movieTitle: string,
     movieReview: string,
     movieRating: number,
+    movieReleaseDate: string,
+    movieImg: string,
 }
 
 interface Movies {
@@ -44,6 +42,11 @@ interface Movies {
 export default function CreateReview({ handleCloseCreateReview, openCreateReview }: Props) {
     const handleSubmit = async (data: Data) => {
         console.log('data', data)
+        console.log('data title', data.movieTitle)
+        console.log('data review', data.movieReview)
+        console.log('data rating', data.movieRating)
+        console.log('data release date', data.movieReleaseDate)
+        console.log('data img', data.movieImg)
 
         try {
             const response = await fetch('http://localhost:3001/movies/reviews', {
@@ -55,6 +58,8 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                     movieTitle: data.movieTitle,
                     movieReview: data.movieReview,
                     movieRating: data.movieRating,
+                    movieReleaseDate: data.movieReleaseDate,
+                    movieImg: data.movieImg,
                 }),
             });
 
@@ -76,7 +81,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
 
     const [query, setQuery] = useState('')
     const [searchOptions, setSearchOptions] = useState<Movies[]>([])
-    const [selectedMovie, setSelectedMovie] = useState()
+    const [selectedMovie, setSelectedMovie] = useState<Movies | null>(null)
 
     const getSearchMovies = async (url: string) => {
         const res = await fetch(url)
@@ -105,10 +110,10 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
         console.log('query:', query)
     }
 
-    const handleSelectedMovie = (e: any, value: any) => {
+    const handleSelectedMovie = (e: any, value: Movies | null) => {
         console.log('event:', e)
         setSelectedMovie(value)
-        console.log('selected movie', selectedMovie)
+        console.log('selected movie', value)
     }
 
     return (
@@ -121,12 +126,19 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                     <form onSubmit={(event) => {
                         event.preventDefault();
 
+                        if (!selectedMovie) {
+                            console.log("No movie selected");
+                            return;
+                        }
+
                         const formElements = event.currentTarget.elements as any;
 
                         const data: Data = {
-                            movieTitle: formElements.movieTitle.value,
+                            movieTitle: selectedMovie.label,
                             movieReview: formElements.movieReview.value,
                             movieRating: parseFloat(formElements.movieRating.value),
+                            movieReleaseDate: selectedMovie.releaseDate,
+                            movieImg: selectedMovie.img,
                         };
 
                         handleSubmit(data);
