@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Container from '@mui/material/Container';
-import { Grid, Box } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import MovieCard from '../../components/MovieCard/MovieCard';
 import LoadingScreen from '../../components/Loading/LoadingScreen';
@@ -25,13 +25,13 @@ interface Movie {
 }
 
 export default function
-Reviews({
-    handleOpenEditReview,
-    handleCloseCreateReview,
-    openCreateReview,
-    handleCloseEditReview,
-    openEditReview
-}: Props) {
+    Reviews({
+        handleOpenEditReview,
+        handleCloseCreateReview,
+        openCreateReview,
+        handleCloseEditReview,
+        openEditReview
+    }: Props) {
 
     const [movies, setMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -63,31 +63,27 @@ Reviews({
     };
 
     return (
-        <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            minHeight="100vh"
-            marginTop={5}
-            marginBottom={10}
+        <Container
+            sx={{
+                marginTop: 5,
+                marginBottom: 10
+            }}
         >
-            <Container>
-                <Grid
-                    container
-                    spacing={2}
-                    alignItems="center"
-                >
-                    {loading
-                        ? <LoadingScreen />
-                        : movies.map((movie, index) => (
-                            <MovieCard key={index} movie={movie} handleOpenEditReview={handleOpenEditReview} />
-                        ))
-                    }
-                </Grid>
-            </Container>
+            <Grid
+                container
+                spacing={2}
+                alignItems="center"
+            >
+                {loading
+                    ? <LoadingScreen />
+                    : movies.map((movie, index) => (
+                        <MovieCard key={index} movie={movie} handleOpenEditReview={handleOpenEditReview} />
+                    ))
+                }
+            </Grid>
 
             <CreateReview handleCloseCreateReview={handleCloseCreateReview} openCreateReview={openCreateReview} />
             <EditReview handleCloseEditReview={handleCloseEditReview} openEditReview={openEditReview} />
-        </Box>
+        </Container>
     );
 }
