@@ -54,7 +54,7 @@ app.post('/users', (req, res) => {
 
 app.get('/movies', (req, res) => {
     const query = `
-        SELECT * FROM MOVIES
+        SELECT * FROM REVIEWS
     `;
 
     connection.query(query, (err, results) => {
@@ -72,7 +72,7 @@ app.post('/movies/reviews', (req, res) => {
 
     const query = `
         INSERT INTO 
-        MOVIES (MOVIE_TITLE, MOVIE_DATE, MOVIE_IMG, MOVIE_RATING, MOVIE_REVIEW)
+        REVIEWS (REVIEW_MOVIE_TITLE, REVIEW_MOVIE_DATE, REVIEW_MOVIE_IMG, REVIEW_MOVIE_RATING, REVIEW_MOVIE_REVIEW)
         VALUES (?, '2024-07-29', 'aaaaaaaaa', ?, ?)
     `;
 

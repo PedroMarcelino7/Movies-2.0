@@ -17,11 +17,11 @@ interface Props {
 }
 
 interface Movie {
-    MOVIE_TITLE: string;
-    MOVIE_DATE: string;
-    MOVIE_IMG: string;
-    MOVIE_RATING: number;
-    MOVIE_REVIEW: string;
+    REVIEW_MOVIE_TITLE: string;
+    REVIEW_MOVIE_DATE: string;
+    REVIEW_MOVIE_IMG: string;
+    REVIEW_MOVIE_RATING: number;
+    REVIEW_MOVIE_REVIEW: string;
 }
 
 export default function

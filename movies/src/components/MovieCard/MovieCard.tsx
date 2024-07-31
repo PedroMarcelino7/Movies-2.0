@@ -32,11 +32,11 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 interface Movie {
-    MOVIE_TITLE: string;
-    MOVIE_DATE: string;
-    MOVIE_IMG: string;
-    MOVIE_RATING: number;
-    MOVIE_REVIEW: string;
+    REVIEW_MOVIE_TITLE: string;
+    REVIEW_MOVIE_DATE: string;
+    REVIEW_MOVIE_IMG: string;
+    REVIEW_MOVIE_RATING: number;
+    REVIEW_MOVIE_REVIEW: string;
 }
 
 interface Props {
@@ -63,7 +63,7 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
                         </IconButton>
                     }
                     title={
-                        <Tip name={movie.MOVIE_TITLE} placement='bottom-start'>
+                        <Tip name={movie.REVIEW_MOVIE_TITLE} placement='bottom-start'>
                             <Typography
                                 noWrap
                                 sx={{
@@ -73,20 +73,20 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
                                     maxWidth: '250px'
                                 }}
                             >
-                                {movie.MOVIE_TITLE}
+                                {movie.REVIEW_MOVIE_TITLE}
                             </Typography>
                         </Tip>
                     }
-                    subheader={movie.MOVIE_DATE}
+                    subheader={movie.REVIEW_MOVIE_DATE}
                 />
                 <CardMedia
                     component="img"
                     height="194"
-                    image={movie.MOVIE_IMG}
-                    alt={movie.MOVIE_TITLE}
+                    image={movie.REVIEW_MOVIE_IMG}
+                    alt={movie.REVIEW_MOVIE_TITLE}
                 />
                 <CardActions disableSpacing>
-                    <MovieRate rating={movie.MOVIE_RATING} />
+                    <MovieRate rating={movie.REVIEW_MOVIE_RATING} />
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
@@ -100,7 +100,7 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography paragraph>{movie.MOVIE_REVIEW}</Typography>
+                        <Typography paragraph>{movie.REVIEW_MOVIE_REVIEW}</Typography>
                     </CardContent>
                 </Collapse>
             </Card>
