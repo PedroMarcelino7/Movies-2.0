@@ -108,7 +108,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
     const handleSelectedMovie = (e: any, value: any) => {
         console.log('event:', e)
         setSelectedMovie(value)
-        alert(selectedMovie)
+        console.log('selected movie', selectedMovie)
     }
 
     return (

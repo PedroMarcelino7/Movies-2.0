@@ -25,13 +25,13 @@ interface Movie {
 }
 
 export default function
-    Reviews({
-        handleOpenEditReview,
-        handleCloseCreateReview,
-        openCreateReview,
-        handleCloseEditReview,
-        openEditReview
-    }: Props) {
+Reviews({
+    handleOpenEditReview,
+    handleCloseCreateReview,
+    openCreateReview,
+    handleCloseEditReview,
+    openEditReview
+}: Props) {
 
     const [movies, setMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
