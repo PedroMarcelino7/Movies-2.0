@@ -45,6 +45,8 @@ interface Props {
 }
 
 export default function MovieCard({ handleOpenEditReview, movie }: Props) {
+    const imageUrl = 'https://image.tmdb.org/t/p/w500/'
+
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -82,7 +84,7 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
                 <CardMedia
                     component="img"
                     height="194"
-                    image={movie.REVIEW_MOVIE_IMG}
+                    image={`${imageUrl}${movie.REVIEW_MOVIE_IMG}`}
                     alt={movie.REVIEW_MOVIE_TITLE}
                 />
                 <CardActions disableSpacing>
