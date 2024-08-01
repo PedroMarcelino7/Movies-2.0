@@ -10,6 +10,7 @@ import EditReview from './EditReview';
 import ActionsButton from '../../components/ActionsButton/ActionsButton';
 
 interface Movie {
+    REVIEW_ID: number,
     REVIEW_MOVIE_TITLE: string;
     REVIEW_MOVIE_DATE: string;
     REVIEW_MOVIE_IMG: string;
@@ -22,10 +23,10 @@ export default function Reviews() {
     // MODAL CONTROLLER ----------------------------------------------------------------------------------------------------------------------------------------------------
     const [openCreateReview, setOpenCreateReview] = useState(false);
     const [openEditReview, setOpenEditReview] = useState(false);
-    
+
     const handleOpenCreateReview = () => setOpenCreateReview(true)
     const handleCloseCreateReview = () => setOpenCreateReview(false)
-    
+
     const handleOpenEditReview = () => setOpenEditReview(true)
     const handleCloseEditReview = () => setOpenEditReview(false)
 
@@ -75,13 +76,23 @@ export default function Reviews() {
                     {loading
                         ? <LoadingScreen />
                         : movies.map((movie, index) => (
-                            <MovieCard key={index} movie={movie} handleOpenEditReview={handleOpenEditReview} />
+                            <MovieCard
+                                key={index}
+                                movie={movie}
+                                handleOpenEditReview={handleOpenEditReview}
+                            />
                         ))
                     }
                 </Grid>
 
-                <CreateReview handleCloseCreateReview={handleCloseCreateReview} openCreateReview={openCreateReview} />
-                <EditReview handleCloseEditReview={handleCloseEditReview} openEditReview={openEditReview} />
+                <CreateReview
+                    handleCloseCreateReview={handleCloseCreateReview}
+                    openCreateReview={openCreateReview}
+                />
+                <EditReview
+                    handleCloseEditReview={handleCloseEditReview}
+                    openEditReview={openEditReview}
+                />
             </Container>
 
             <ActionsButton handleOpenCreateReview={handleOpenCreateReview} />

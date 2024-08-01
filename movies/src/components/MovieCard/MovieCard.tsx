@@ -32,6 +32,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 interface Movie {
+    REVIEW_ID: number,
     REVIEW_MOVIE_TITLE: string;
     REVIEW_MOVIE_DATE: string;
     REVIEW_MOVIE_IMG: string;
