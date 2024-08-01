@@ -7,14 +7,7 @@ import MovieCard from '../../components/MovieCard/MovieCard';
 import LoadingScreen from '../../components/Loading/LoadingScreen';
 import CreateReview from './CreateReview';
 import EditReview from './EditReview';
-
-interface Props {
-    handleOpenEditReview: () => void,
-    handleCloseCreateReview: () => void,
-    openCreateReview: boolean,
-    handleCloseEditReview: () => void,
-    openEditReview: boolean
-}
+import ActionsButton from '../../components/ActionsButton/ActionsButton';
 
 interface Movie {
     REVIEW_MOVIE_TITLE: string;
@@ -24,18 +17,22 @@ interface Movie {
     REVIEW_MOVIE_REVIEW: string;
 }
 
-export default function
-    Reviews({
-        handleOpenEditReview,
-        handleCloseCreateReview,
-        openCreateReview,
-        handleCloseEditReview,
-        openEditReview
-    }: Props) {
+export default function Reviews() {
+
+    // MODAL CONTROLLER ----------------------------------------------------------------------------------------------------------------------------------------------------
+    const [openCreateReview, setOpenCreateReview] = useState(false);
+    const [openEditReview, setOpenEditReview] = useState(false);
+    
+    const handleOpenCreateReview = () => setOpenCreateReview(true)
+    const handleCloseCreateReview = () => setOpenCreateReview(false)
+    
+    const handleOpenEditReview = () => setOpenEditReview(true)
+    const handleCloseEditReview = () => setOpenEditReview(false)
 
     const [movies, setMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
+    // GET MOVIES FROM DATABASE ---------------------------------------------------------------------------------------------------------------------------------------------
     useEffect(() => {
         getMovies();
     }, []);
@@ -63,27 +60,31 @@ export default function
     };
 
     return (
-        <Container
-            sx={{
-                marginTop: 5,
-                marginBottom: 10
-            }}
-        >
-            <Grid
-                container
-                spacing={2}
-                alignItems="center"
+        <>
+            <Container
+                sx={{
+                    marginTop: 5,
+                    marginBottom: 10
+                }}
             >
-                {loading
-                    ? <LoadingScreen />
-                    : movies.map((movie, index) => (
-                        <MovieCard key={index} movie={movie} handleOpenEditReview={handleOpenEditReview} />
-                    ))
-                }
-            </Grid>
+                <Grid
+                    container
+                    spacing={2}
+                    alignItems="center"
+                >
+                    {loading
+                        ? <LoadingScreen />
+                        : movies.map((movie, index) => (
+                            <MovieCard key={index} movie={movie} handleOpenEditReview={handleOpenEditReview} />
+                        ))
+                    }
+                </Grid>
 
-            <CreateReview handleCloseCreateReview={handleCloseCreateReview} openCreateReview={openCreateReview} />
-            <EditReview handleCloseEditReview={handleCloseEditReview} openEditReview={openEditReview} />
-        </Container>
+                <CreateReview handleCloseCreateReview={handleCloseCreateReview} openCreateReview={openCreateReview} />
+                <EditReview handleCloseEditReview={handleCloseEditReview} openEditReview={openEditReview} />
+            </Container>
+
+            <ActionsButton handleOpenCreateReview={handleOpenCreateReview} />
+        </>
     );
 }
