@@ -11,8 +11,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import SearchInput from './SearchInput';
+import { NavLink } from 'react-router-dom';
 
 const pages = ['Reviews', 'News', 'Top Movies'];
+const pagesUrl = ['reviews', 'news', 'topmovies'];
 const settings = ['Profile', 'Logout'];
 
 export default function Navbar() {
@@ -70,9 +72,16 @@ export default function Navbar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                            {pages.map((page, index) => (
+                                <MenuItem
+                                    key={index}
+                                    onClick={handleCloseNavMenu}
+                                >
+                                    <Typography textAlign="center">
+                                        <NavLink to={pagesUrl[index]}>
+                                            {page}
+                                        </NavLink>
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -83,13 +92,15 @@ export default function Navbar() {
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {pages.map((page, index) => (
                             <Button
-                                key={page}
+                                key={index}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                <NavLink to={pagesUrl[index]}>
+                                    {page}
+                                </NavLink>
                             </Button>
                         ))}
                     </Box>
