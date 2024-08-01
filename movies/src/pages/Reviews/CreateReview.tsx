@@ -180,7 +180,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                                 />
                             </Box>
 
-                            <ModalButton text='Submit Review' />
+                            <ModalButton text='Submit Review' type='submit' color='primary' />
                         </Box>
                     </form>
                 </Box>

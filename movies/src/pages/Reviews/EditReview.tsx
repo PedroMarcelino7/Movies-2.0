@@ -185,9 +185,9 @@ export default function EditReview({ handleCloseEditReview, openEditReview }: Pr
                                 flexDirection: 'column',
                                 gap: 1
                             }}>
-                                <ModalButton text='Edit' />
+                                <ModalButton text='Edit' type='submit' color='primary' />
 
-                                <ModalButton text='Archive' />
+                                <ModalButton text='Archive' type='button' color='error' />
                             </Box>
                         </Box>
                     </form>
