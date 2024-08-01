@@ -8,6 +8,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar"
 import Reviews from "./pages/Reviews/Reviews"
+import News from "./pages/News/News";
+import TopMovies from "./pages/Top Movies/TopMovies";
 
 const darkTheme = createTheme({
   palette: {
@@ -60,6 +62,14 @@ function App() {
                 handleCloseEditReview={handleCloseEditReview}
                 openEditReview={openEditReview}
               />
+            } />
+
+            <Route path="/news" element={
+              <News />
+            } />
+
+            <Route path="/topmovies" element={
+              <TopMovies />
             } />
           </Routes>
 
