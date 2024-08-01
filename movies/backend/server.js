@@ -87,6 +87,30 @@ app.post('/movies/reviews', (req, res) => {
     });
 });
 
+app.post('/movies/reviews/edit', (req, res) => {
+    const { id, movieTitle, movieReview, movieRating, movieReleaseDate, movieImg } = req.body;
+
+    const query = `
+        UPDATE REVIEWS
+        SET REVIEW_MOVIE_TITLE = ?,
+            REVIEW_MOVIE_DATE = ?,
+            REVIEW_MOVIE_IMG = ?,
+            REVIEW_MOVIE_RATING = ?,
+            REVIEW_MOVIE_REVIEW = ?
+        WHERE REVIEW_ID = ?;
+    `;
+
+    const values = [movieTitle, movieReleaseDate, movieImg, movieRating, movieReview, id];
+
+    connection.query(query, values, (err, results) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        res.status(201).json(results);
+    });
+});
+
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {

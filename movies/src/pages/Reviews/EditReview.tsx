@@ -21,7 +21,8 @@ const style = {
 
 interface Props {
     handleCloseEditReview: () => void,
-    openEditReview: boolean
+    openEditReview: boolean,
+    id: number | null
 }
 
 interface Data {
@@ -39,9 +40,10 @@ interface Movies {
     img: string;
 }
 
-export default function EditReview({ handleCloseEditReview, openEditReview }: Props) {
+export default function EditReview({ handleCloseEditReview, openEditReview, id }: Props) {
     const handleSubmit = async (data: Data) => {
         console.log('data', data)
+        console.log('id', id)
         console.log('data title', data.movieTitle)
         console.log('data review', data.movieReview)
         console.log('data rating', data.movieRating)
@@ -49,12 +51,13 @@ export default function EditReview({ handleCloseEditReview, openEditReview }: Pr
         console.log('data img', data.movieImg)
 
         try {
-            const response = await fetch('http://localhost:3001/movies/reviews', {
+            const response = await fetch('http://localhost:3001/movies/reviews/edit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    id: id,
                     movieTitle: data.movieTitle,
                     movieReview: data.movieReview,
                     movieRating: data.movieRating,

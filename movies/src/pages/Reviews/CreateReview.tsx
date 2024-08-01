@@ -41,12 +41,6 @@ interface Movies {
 
 export default function CreateReview({ handleCloseCreateReview, openCreateReview }: Props) {
     const handleSubmit = async (data: Data) => {
-        console.log('data', data)
-        console.log('data title', data.movieTitle)
-        console.log('data review', data.movieReview)
-        console.log('data rating', data.movieRating)
-        console.log('data release date', data.movieReleaseDate)
-        console.log('data img', data.movieImg)
 
         try {
             const response = await fetch('http://localhost:3001/movies/reviews', {
@@ -105,15 +99,12 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
     }, [query])
 
     const handleSearch = (value: string) => {
-        console.log('valor recebido do on change:', value)
         setQuery(value)
-        console.log('query:', query)
     }
 
     const handleSelectedMovie = (e: any, value: Movies | null) => {
         console.log('event:', e)
         setSelectedMovie(value)
-        console.log('selected movie', value)
     }
 
     return (

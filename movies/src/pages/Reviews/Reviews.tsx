@@ -27,7 +27,10 @@ export default function Reviews() {
     const handleOpenCreateReview = () => setOpenCreateReview(true)
     const handleCloseCreateReview = () => setOpenCreateReview(false)
 
-    const handleOpenEditReview = () => setOpenEditReview(true)
+    const handleOpenEditReview = (id: number) => {
+        setOpenEditReview(true)
+        setId(id)
+    }
     const handleCloseEditReview = () => setOpenEditReview(false)
 
     const [movies, setMovies] = useState<Movie[]>([]);
@@ -59,6 +62,8 @@ export default function Reviews() {
             console.log('Error:', err);
         }
     };
+
+    const [id, setId] = useState<number | null>(null)
 
     return (
         <>
@@ -92,6 +97,7 @@ export default function Reviews() {
                 <EditReview
                     handleCloseEditReview={handleCloseEditReview}
                     openEditReview={openEditReview}
+                    id={id}
                 />
             </Container>
 
