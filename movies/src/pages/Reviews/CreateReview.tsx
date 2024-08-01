@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import AutoComplete from '../../components/Inputs/AutoComplete';
-import SubmitButton from '../../components/Buttons/SubmitButton';
+import ModalButton from '../../components/Buttons/ModalButton';
 import RatingInput from '../../components/Inputs/RatingInput';
 import TextArea from '../../components/Inputs/TextArea';
 import { useEffect, useState } from 'react';
@@ -180,7 +180,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
                                 />
                             </Box>
 
-                            <SubmitButton text='Submit Review' />
+                            <ModalButton text='Submit Review' />
                         </Box>
                     </form>
                 </Box>
