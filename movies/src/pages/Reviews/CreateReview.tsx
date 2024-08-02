@@ -89,7 +89,6 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
         }));
 
         setSearchOptions(options)
-        console.log('search options:', searchOptions)
     }
 
     useEffect(() => {

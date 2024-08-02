@@ -41,17 +41,13 @@ interface Movies {
 }
 
 export default function EditReview({ handleCloseEditReview, openEditReview, id }: Props) {
-    const handleSubmit = async (data: Data) => {
-        console.log('data', data)
-        console.log('id', id)
-        console.log('data title', data.movieTitle)
-        console.log('data review', data.movieReview)
-        console.log('data rating', data.movieRating)
-        console.log('data release date', data.movieReleaseDate)
-        console.log('data img', data.movieImg)
+    const [action, setAction] = useState<'edit' | 'archive'>('edit');
+
+    const handleSubmit = async (data: Data, action: 'edit' | 'archive') => {
+        console.log('action', action)
 
         try {
-            const response = await fetch('http://localhost:3001/movies/reviews/edit', {
+            const response = await fetch(`http://localhost:3001/movies/reviews/${action}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +73,6 @@ export default function EditReview({ handleCloseEditReview, openEditReview, id }
             console.log("Error:", err);
         }
     }
-
     // API ----------------------------------------------------------------
     const searchURL = 'https://api.themoviedb.org/3/search/movie'
     const apiKey = import.meta.env.VITE_API_KEY
@@ -98,7 +93,6 @@ export default function EditReview({ handleCloseEditReview, openEditReview, id }
         }));
 
         setSearchOptions(options)
-        console.log('search options:', searchOptions)
     }
 
     useEffect(() => {
@@ -108,15 +102,12 @@ export default function EditReview({ handleCloseEditReview, openEditReview, id }
     }, [query])
 
     const handleSearch = (value: string) => {
-        console.log('valor recebido do on change:', value)
         setQuery(value)
-        console.log('query:', query)
     }
 
     const handleSelectedMovie = (e: any, value: Movies | null) => {
         console.log('event:', e)
         setSelectedMovie(value)
-        console.log('selected movie', value)
     }
 
     return (
@@ -144,7 +135,7 @@ export default function EditReview({ handleCloseEditReview, openEditReview, id }
                             movieImg: selectedMovie.img,
                         };
 
-                        handleSubmit(data);
+                        handleSubmit(data, action);
                     }}>
                         <Box sx={{
                             display: 'flex',
@@ -188,9 +179,18 @@ export default function EditReview({ handleCloseEditReview, openEditReview, id }
                                 flexDirection: 'column',
                                 gap: 1
                             }}>
-                                <ModalButton text='Edit' type='submit' color='primary' />
-
-                                <ModalButton text='Archive' type='button' color='error' />
+                                <ModalButton
+                                    text='Edit'
+                                    type='submit'
+                                    color='primary'
+                                    onClick={() => setAction('edit')}
+                                />
+                                <ModalButton
+                                    text='Archive'
+                                    type='submit'
+                                    color='error'
+                                    onClick={() => setAction('archive')}
+                                />
                             </Box>
                         </Box>
                     </form>

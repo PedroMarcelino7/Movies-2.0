@@ -21,6 +21,8 @@ interface Movie {
 export default function Reviews() {
 
     // MODAL CONTROLLER ----------------------------------------------------------------------------------------------------------------------------------------------------
+    const [id, setId] = useState<number | null>(null)
+    
     const [openCreateReview, setOpenCreateReview] = useState(false);
     const [openEditReview, setOpenEditReview] = useState(false);
 
@@ -62,8 +64,6 @@ export default function Reviews() {
             console.log('Error:', err);
         }
     };
-
-    const [id, setId] = useState<number | null>(null)
 
     return (
         <>
