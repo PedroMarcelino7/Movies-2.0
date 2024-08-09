@@ -26,6 +26,7 @@ interface Props {
 }
 
 interface Data {
+    id: number | undefined,
     movieTitle: string,
     movieReview: string,
     movieRating: number,
@@ -52,8 +53,6 @@ interface Movie {
 export default function EditReview({ handleCloseEditReview, openEditReview, review }: Props) {
     const [action, setAction] = useState<'edit' | 'archive'>('edit');
 
-    console.log(review)
-
     const handleSubmit = async (data: Data, action: 'edit' | 'archive') => {
         console.log('action', action)
 
@@ -64,6 +63,7 @@ export default function EditReview({ handleCloseEditReview, openEditReview, revi
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    id: data.id,
                     movieTitle: data.movieTitle,
                     movieReview: data.movieReview,
                     movieRating: data.movieRating,
@@ -138,6 +138,7 @@ export default function EditReview({ handleCloseEditReview, openEditReview, revi
                         const formElements = event.currentTarget.elements as any;
 
                         const data: Data = {
+                            id: review?.REVIEW_ID,
                             movieTitle: selectedMovie.label,
                             movieReview: formElements.movieReview.value,
                             movieRating: parseFloat(formElements.movieRating.value),
@@ -168,19 +169,21 @@ export default function EditReview({ handleCloseEditReview, openEditReview, revi
                                     required={true}
                                     movies={searchOptions}
                                     handleSelectedMovie={handleSelectedMovie}
+                                    value={review && review.REVIEW_MOVIE_TITLE}
                                 />
 
                                 <TextArea
                                     name='movieReview'
                                     placeholder='Your Review...'
                                     required={false}
+                                    value={review && review.REVIEW_MOVIE_REVIEW}
                                 />
 
                                 <RatingInput
                                     name='movieRating'
-                                    defaultValue={0}
                                     precision={0.5}
                                     size='large'
+                                    value={review && review.REVIEW_MOVIE_RATING}
                                 />
                             </Box>
 

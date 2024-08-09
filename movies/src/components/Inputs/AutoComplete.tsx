@@ -14,10 +14,11 @@ interface Props {
     required: boolean;
     movies: MovieOption[];
     handleSearch: (value: string) => void;
-    handleSelectedMovie: (e: any, value: MovieOption | null) => void
+    handleSelectedMovie: (e: any, value: MovieOption | null) => void,
+    value: any
 }
 
-export default function AutoComplete({ name, required, movies, handleSearch, handleSelectedMovie }: Props) {
+export default function AutoComplete({ name, required, movies, handleSearch, handleSelectedMovie, value }: Props) {
     useEffect(() => {
         console.log('movies recebidos:', movies)
     }, [movies])
@@ -41,6 +42,7 @@ export default function AutoComplete({ name, required, movies, handleSearch, han
                     name={name}
                     required={required}
                     onChange={(e) => handleSearch(e.target.value)}
+                    value={value}
                 />
             )}
         />
