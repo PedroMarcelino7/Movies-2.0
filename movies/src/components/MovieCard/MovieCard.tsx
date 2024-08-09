@@ -41,7 +41,7 @@ interface Movie {
 }
 
 interface Props {
-    handleOpenEditReview: (id: number) => void,
+    handleOpenEditReview: (movie: Movie) => void,
     movie: Movie,
 }
 
@@ -59,7 +59,7 @@ export default function MovieCard({ handleOpenEditReview, movie }: Props) {
             <Card sx={{ width: '100%', maxWidth: 345 }}>
                 <CardHeader
                     action={
-                        <IconButton onClick={() => handleOpenEditReview(movie.REVIEW_ID)}>
+                        <IconButton onClick={() => handleOpenEditReview(movie)}>
                             <Tip name='Edit' placement='bottom'>
                                 <EditIcon />
                             </Tip>

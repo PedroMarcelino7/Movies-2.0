@@ -21,22 +21,21 @@ interface Movie {
 export default function Reviews() {
 
     // MODAL CONTROLLER ----------------------------------------------------------------------------------------------------------------------------------------------------
-    const [id, setId] = useState<number | null>(null)
-    
     const [openCreateReview, setOpenCreateReview] = useState(false);
     const [openEditReview, setOpenEditReview] = useState(false);
 
     const handleOpenCreateReview = () => setOpenCreateReview(true)
     const handleCloseCreateReview = () => setOpenCreateReview(false)
 
-    const handleOpenEditReview = (id: number) => {
+    const handleOpenEditReview = (movie: Movie) => {
         setOpenEditReview(true)
-        setId(id)
+        setReviewToEdit(movie)
     }
     const handleCloseEditReview = () => setOpenEditReview(false)
 
     const [movies, setMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [reviewToEdit, setReviewToEdit] = useState<Movie | undefined>(undefined)
 
     // GET MOVIES FROM DATABASE ---------------------------------------------------------------------------------------------------------------------------------------------
     useEffect(() => {
@@ -97,7 +96,7 @@ export default function Reviews() {
                 <EditReview
                     handleCloseEditReview={handleCloseEditReview}
                     openEditReview={openEditReview}
-                    id={id}
+                    review={reviewToEdit}
                 />
             </Container>
 

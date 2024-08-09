@@ -22,7 +22,7 @@ const style = {
 interface Props {
     handleCloseEditReview: () => void,
     openEditReview: boolean,
-    id: number | null
+    review: Movie | undefined
 }
 
 interface Data {
@@ -40,8 +40,19 @@ interface Movies {
     img: string;
 }
 
-export default function EditReview({ handleCloseEditReview, openEditReview, id }: Props) {
+interface Movie {
+    REVIEW_ID: number,
+    REVIEW_MOVIE_TITLE: string;
+    REVIEW_MOVIE_DATE: string;
+    REVIEW_MOVIE_IMG: string;
+    REVIEW_MOVIE_RATING: number;
+    REVIEW_MOVIE_REVIEW: string;
+}
+
+export default function EditReview({ handleCloseEditReview, openEditReview, review }: Props) {
     const [action, setAction] = useState<'edit' | 'archive'>('edit');
+
+    console.log(review)
 
     const handleSubmit = async (data: Data, action: 'edit' | 'archive') => {
         console.log('action', action)
@@ -53,7 +64,6 @@ export default function EditReview({ handleCloseEditReview, openEditReview, id }
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    id: id,
                     movieTitle: data.movieTitle,
                     movieReview: data.movieReview,
                     movieRating: data.movieRating,
