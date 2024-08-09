@@ -78,7 +78,10 @@ export default function Navbar() {
                                     onClick={handleCloseNavMenu}
                                 >
                                     <Typography textAlign="center">
-                                        <NavLink to={pagesUrl[index]}>
+                                        <NavLink
+                                            to={pagesUrl[index]}
+                                            style={{ color: '#fff', textDecoration: 'none' }}
+                                        >
                                             {page}
                                         </NavLink>
                                     </Typography>
@@ -96,9 +99,15 @@ export default function Navbar() {
                             <Button
                                 key={index}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{
+                                    my: 2,
+                                    display: 'block',
+                                }}
                             >
-                                <NavLink to={pagesUrl[index]}>
+                                <NavLink
+                                    to={pagesUrl[index]}
+                                    style={{ color: '#fff', textDecoration: 'none' }}
+                                >
                                     {page}
                                 </NavLink>
                             </Button>
