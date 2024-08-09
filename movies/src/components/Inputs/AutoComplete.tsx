@@ -15,7 +15,7 @@ interface Props {
     movies: MovieOption[];
     handleSearch: (value: string) => void;
     handleSelectedMovie: (e: any, value: MovieOption | null) => void,
-    value: any
+    value?: any
 }
 
 export default function AutoComplete({ name, required, movies, handleSearch, handleSelectedMovie, value }: Props) {

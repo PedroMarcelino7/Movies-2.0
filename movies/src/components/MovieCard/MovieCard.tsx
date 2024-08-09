@@ -38,6 +38,7 @@ interface Movie {
     REVIEW_MOVIE_IMG: string;
     REVIEW_MOVIE_RATING: number;
     REVIEW_MOVIE_REVIEW: string;
+    REVIEW_STATUS: number
 }
 
 interface Props {

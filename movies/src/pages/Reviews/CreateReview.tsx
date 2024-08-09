@@ -164,7 +164,7 @@ export default function CreateReview({ handleCloseCreateReview, openCreateReview
 
                                 <RatingInput
                                     name='movieRating'
-                                    defaultValue={0}
+                                    value={0}
                                     precision={0.5}
                                     size='large'
                                 />

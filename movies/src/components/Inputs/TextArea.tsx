@@ -2,7 +2,7 @@ interface Props {
     name: string,
     placeholder: string,
     required: boolean,
-    value: any
+    value?: any
 }
 
 const textarea = {

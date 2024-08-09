@@ -16,6 +16,7 @@ interface Movie {
     REVIEW_MOVIE_IMG: string;
     REVIEW_MOVIE_RATING: number;
     REVIEW_MOVIE_REVIEW: string;
+    REVIEW_STATUS: number
 }
 
 export default function Reviews() {
@@ -59,6 +60,8 @@ export default function Reviews() {
 
             setLoading(false);
             setMovies(result);
+
+            console.log('result', result)
         } catch (err: any) {
             console.log('Error:', err);
         }
@@ -80,11 +83,13 @@ export default function Reviews() {
                     {loading
                         ? <LoadingScreen />
                         : movies.map((movie, index) => (
-                            <MovieCard
-                                key={index}
-                                movie={movie}
-                                handleOpenEditReview={handleOpenEditReview}
-                            />
+                            movie.REVIEW_STATUS === 1 ? (
+                                <MovieCard
+                                    key={index}
+                                    movie={movie}
+                                    handleOpenEditReview={handleOpenEditReview}
+                                />
+                            ) : null
                         ))
                     }
                 </Grid>

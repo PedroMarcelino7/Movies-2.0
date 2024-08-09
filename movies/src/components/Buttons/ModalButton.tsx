@@ -5,10 +5,9 @@ interface Props {
     text: string,
     type: "button" | "submit" | "reset" | undefined,
     color: "primary" | "secondary" | "success" | "error",
-    onClick: () => any
 }
 
-export default function ModalButton({ text, type, color, onClick }: Props) {
+export default function ModalButton({ text, type, color }: Props) {
     return (
         <Button type={type} variant="contained" size="small" color={color}>
             <Typography>
