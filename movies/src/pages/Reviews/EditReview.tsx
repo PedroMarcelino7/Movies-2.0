@@ -51,8 +51,6 @@ interface Movie {
 }
 
 export default function EditReview({ handleCloseEditReview, openEditReview, review }: Props) {
-    const [action, setAction] = useState<'edit' | 'archive'>('edit');
-
     const handleSubmit = async (data: Data, action: 'edit' | 'archive') => {
         console.log('action', action)
 
@@ -146,7 +144,7 @@ export default function EditReview({ handleCloseEditReview, openEditReview, revi
                             movieImg: selectedMovie.img,
                         };
 
-                        handleSubmit(data, action);
+                        handleSubmit(data, 'archive');
                     }}>
                         <Box sx={{
                             display: 'flex',
@@ -196,13 +194,11 @@ export default function EditReview({ handleCloseEditReview, openEditReview, revi
                                     text='Edit'
                                     type='submit'
                                     color='primary'
-                                    onClick={() => setAction('edit')}
                                 />
                                 <ModalButton
                                     text='Archive'
                                     type='submit'
                                     color='error'
-                                    onClick={() => setAction('archive')}
                                 />
                             </Box>
                         </Box>

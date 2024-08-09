@@ -111,6 +111,26 @@ app.post('/movies/reviews/edit', (req, res) => {
     });
 });
 
+app.post('/movies/reviews/archive', (req, res) => {
+    const { id } = req.body;
+
+    const query = `
+        UPDATE REVIEWS
+        SET REVIEW_STATUS = 0
+        WHERE REVIEW_ID = ?;
+    `;
+
+    const values = [id];
+
+    connection.query(query, values, (err, results) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+
+        res.status(201).json(results);
+    });
+});
+
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
